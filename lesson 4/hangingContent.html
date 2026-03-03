@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html >
+<head>
+<title>Favorite Colors</title>
+<link href="css/hangingContent.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>Bella's Favorite Colors</h1>
+
+<h2>My Favorite Colors and Why?</h2>
+
+
+<h3 id="c1" style="color: green; font-size: 30px;">Green</h3>
+
+<p>It is the color of nature, it is all around us.</p>
+
+<h3 id="c2" style="color: orange; font-size: 30px;">Orange</h3>
+
+<p>It is a warm and vibrant color, reminds me of sunsets.</p>
+
+<h3 id="c3" style="color: blue; font-size: 30px;">Blue</h3>
+
+<p>I love swimming and water is blue.</p>
+
+<h3 id="c4" style="color: purple; font-size: 30px;">Purple</h3>
+
+<p>It is a color that represents creativity and imagination.</p>
+
+<h3 id="c5" style="color: yellow; font-size: 30px;">Yellow</h3>
+
+<p>It is bright but also calming, reminds me of the sun. </p>
+
+<button type="button" onclick="changeP1()">Change paragraph 1 to orange</button>
+<button type="button" onclick="changeP2()">Change paragraph 2 to blue</button>
+<button type="button" onclick="changeP3()">Change paragraph 3 to green</button>
+<button type="button" onclick="changeP4()">Change paragraph 4 to purple</button>
+
+<script>
+    function changeP1()
+    {
+        document.querySelectorAll("p")[0].style.color = "orange";
+    }
+
+    function changeP2()
+    {
+        document.querySelectorAll("p")[1].style.color = "blue";
+    }
+
+    function changeP3()
+    {
+        document.querySelectorAll("p")[2].style.color = "green";
+    }
+
+    function changeP4()
+    {
+        document.querySelectorAll("p")[3].style.color = "purple";
+    }
+
+</script>
+
+<script>
+    var msg = parseInt(prompt("Which color would you like to delete? 1, 2, 3, 4, or 5?"));
+
+    while (isNaN(msg) || msg < 1 || msg > 5)
+    {
+        msg = parseInt(prompt("Which color would you like to delete? 1, 2, 3, 4, or 5?"));
+    }
+
+    var heading = document.getElementById("c" + msg);
+    var paragraph = heading.nextElementSibling;
+
+    heading.remove();
+    paragraph.remove();
+</script>
+<p id="listing"></p>
+<hr>
+</body>
+</html>
+	 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<restaurantMenu>
+    <dish>
+        <name>Margherita Pizza</name>
+        <category>Main Course</category>
+        <origin>Italy</origin>
+        <ingredients>Tomato sauce, mozzarella, basil</ingredients>
+        <price>12.99</price>
+        <calories>850</calories>
+    </dish>
+    <dish>
+        <name>Sushi Platter</name>
+        <category>Main Course</category>
+        <origin>Japan</origin>
+        <ingredients>Rice, salmon, tuna, seaweed</ingredients>
+        <price>18.50</price>
+        <calories>600</calories>
+    </dish>
+    <dish>
+        <name>Caesar Salad</name>
+        <category>Appetizer</category>
+        <origin>Mexico</origin>
+        <ingredients>Romaine lettuce, parmesan, croutons</ingredients>
+        <price>9.75</price>
+        <calories>450</calories>
+    </dish>
+    <dish>
+        <name>Chocolate Lava Cake</name>
+        <category>Dessert</category>
+        <origin>France</origin>
+        <ingredients>Dark chocolate, butter, sugar, eggs</ingredients>
+        <price>7.25</price>
+        <calories>550</calories>
+    </dish>
+</restaurantMenu>

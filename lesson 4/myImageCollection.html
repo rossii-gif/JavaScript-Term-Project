@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Image Collection DOM</title>
+<link href="css/myImage.css" rel="stylesheet" type="text/css" />
+<style>
+a{
+	padding-right:10px;
+}
+nav a:hover{
+	background-color:goldenrod;
+}
+a:hover{
+	background-color:white;
+}
+</style>
+</head>
+<body onload="processName();">
+<hr>
+<a href="media/cici.JPG">
+<img alt="Cici" class="auto-style2" src="media/thumbnails/cici-thumbnail.jpg" style="width: 150px; height: 225px">
+</a>
+<a href="media/kaleb-wakeboard.JPG">
+<img alt="Wakeboard" class="auto-style2" src="media/thumbnails/wakeboard-thumbnail.jpg" style="width: 150px; height: 225px">
+</a>
+<a href="media/northbar-lake.JPG">
+<img alt="Northbar Lake" class="auto-style2" src="media/thumbnails/northbar-thumbnail.jpg" style="width: 150px; height: 225px">
+</a>
+<a href="media/the-hunting-cabin.JPG">
+<img alt="Hunting Cabin" class="auto-style2" src="media/thumbnails/cabin-thumbnail.jpg" style="width: 150px; height: 225px">
+</a>
+<hr>
+<h3>Photo Name:</h3>
+<p id="name">
+	<script>
+	// Displays the text from the alt attribute as the Image Name
+	function processName()
+	{
+		let contents = "";
+		// concatenate each alternate name
+		for ( let i = 0; i < document.links.length; i++ )
+		{
+		     contents += i+1 + ". " +  document.images[i].alt + "&nbsp;&nbsp; ";
+		} // end for
+		document.getElementById( "name" ).innerHTML = contents;
+		// calls function proccessSource in script below
+		processSource();  
+	}	
+	</script>
+</p>
+<h3>Photo Source</h3>
+<p id="source">
+	<script>
+	//Displays the text from the src attribute as the file name and location
+	function processSource()
+	{
+		let contents = "";
+		// concatenate each alternate name
+		for ( let i = 0; i < document.images.length; i++ )
+		{
+			  contents += i+1 + ". " +  document.images[i].src + "&nbsp;&nbsp; ";
+	} // end for
+	document.getElementById( "source" ).innerHTML = contents;
+	// calls function processLinks in the script below
+	processLinks();
+	}
+	</script>
+</p>
+<h3>Photo Text Links</h3>
+	<nav id="links">
+	<script>
+	// Creates navigation text links to the larger images
+		function processLinks()
+		{
+			let contents = "| ";
+			// concatenate each link to contents
+			for ( let i = 0; i < document.links.length; i++ )
+			{
+			   contents += "<a href=" + document.links[i].href + ">" + document.images[i].alt + "</a>  | ";
+			} // end for
+			document.getElementById( "links" ).innerHTML = contents;
+		} // end function processlinks
+	</script>
+	</nav>
+<hr>
+</body>
+</html>

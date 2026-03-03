@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Animation</title>
+    <link rel="stylesheet" href="css/myAnimation.css">
+</head>
+<body>
+
+    <h1>Move the Forest Fairy!</h1>
+
+    <div id="stage">
+        <img src="media/fairy.png" id="fairy">
+    </div>
+
+    <div id="info">X: 0 | Y: 0</div>
+
+    <div class="buttons">
+        <button id="up">Up</button>
+        <button id="down">Down</button>
+        <button id="left">Left</button>
+        <button id="right">Right</button>
+    </div>
+
+<script>
+let fairy = document.getElementById("fairy");
+let info = document.getElementById("info");
+
+let x = 0;
+let y = 0;
+
+function updatePosition() {
+    fairy.style.left = x + "px";
+    fairy.style.top = y + "px";
+    info.textContent = "X: " + x + " | Y: " + y;
+}
+
+document.getElementById("up").addEventListener("click", function() {
+    y -= 10;
+    updatePosition();
+});
+
+document.getElementById("down").addEventListener("click", function() {
+    y += 10;
+    updatePosition();
+});
+
+document.getElementById("left").addEventListener("click", function() {
+    x -= 10;
+    updatePosition();
+});
+
+document.getElementById("right").addEventListener("click", function() {
+    x += 10;
+    updatePosition();
+});
+</script>
+
+</body>
+</html>

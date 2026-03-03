@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BOM Events</title>
+    <link rel="stylesheet" href="css/bom.css">
+</head>
+<body>
+
+<h1>Browser Object Model aka Da BOM</h1>
+
+<div class="buttons">
+    <button id="openWin">Open Window</button>
+    <button id="goGoogle">Go to Google</button>
+</div>
+
+<div class="grid">
+
+    <div class="card">
+        <h3>Window</h3>
+        <p id="windowInfo"></p>
+    </div>
+
+    <div class="card">
+        <h3>Navigator</h3>
+        <p id="navigatorInfo"></p>
+    </div>
+
+    <div class="card">
+        <h3>Location</h3>
+        <p id="locationInfo"></p>
+    </div>
+
+    <div class="card">
+        <h3>History</h3>
+        <p id="historyInfo"></p>
+    </div>
+
+    <div class="card">
+        <h3>Screen</h3>
+        <p id="screenInfo"></p>
+    </div>
+
+</div>
+
+<script>
+let newWindow;
+
+window.onload = function() {
+
+    document.getElementById("windowInfo").innerHTML =
+        "Width: " + window.innerWidth + "<br>" +
+        "Height: " + window.innerHeight;
+
+    document.getElementById("navigatorInfo").innerHTML =
+        "Platform: " + navigator.platform + "<br>" +
+        "Language: " + navigator.language;
+
+    document.getElementById("locationInfo").innerHTML =
+        "URL: " + location.href + "<br>" +
+        "Host: " + location.hostname;
+
+    document.getElementById("historyInfo").innerHTML =
+        "Pages in History: " + history.length;
+
+    document.getElementById("screenInfo").innerHTML =
+        "Screen: " + screen.width + " x " + screen.height;
+};
+
+document.getElementById("openWin").addEventListener("click", function() {
+    newWindow = window.open("", "", "width=300,height=200");
+    newWindow.document.write("<h3>Sooooo cooool that you opened a new window with one click!!!!!</h3>");
+});
+
+document.getElementById("goGoogle").addEventListener("click", function() {
+    location.assign("https://www.google.com");
+});
+</script>
+</body>
+</html>

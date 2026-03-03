@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #6ea18f;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: darkolivegreen;
+    text-shadow: black 2px 2px 2px;
+}
+
+.buttons {
+    margin-bottom: 20px;
+    
+}
+
+button {
+    padding: 8px 14px;
+    margin: 10px;
+    background-color: olivedrab;
+    color: rgb(37, 45, 24);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px black;
+    
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+    color: rgb(37, 45, 24);
+}
+.card {
+    background: olivedrab;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px black;
+    border-color: darkgreen;
+}

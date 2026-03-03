@@ -1,0 +1,36 @@
+body {
+    text-align: center;
+    font-family: fantasy;
+}
+h1{
+    color: darkgreen;
+    font-size: 5em;
+}
+#stage {
+    width: 900px;
+    height: 600px;
+    margin: 20px auto;
+    position: relative;
+    background-image: url('../media/enchanted-forest.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+#fairy {
+    width: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.buttons {
+    margin-top: 15px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    color: seagreen;
+}
+ 

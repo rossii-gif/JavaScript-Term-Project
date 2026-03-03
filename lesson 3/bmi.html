@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Body Mass Index</title>
+<style>
+body{
+	font-family: sans-serif;
+	background-image:url('media/running.png');
+    background-repeat:no-repeat;
+    background-size:cover;
+    color:rgb(139, 67, 0);
+    font-size:14pt;
+}
+section{
+	margin: 0 auto;
+	background-color:white;
+	width:500px; 
+	padding:10px;
+	box-shadow:10px 10px 10px rgb(186, 90, 0);
+    border-radius: 5px;
+}
+h1{
+	font-size:28pt;
+	text-align:center;
+}
+input:focus { 
+    background-color:rgb(255, 225, 77);
+    color:white;
+}
+p{
+	text-align:center;
+	font-size:14pt;
+	font-weight:900;
+}
+.inputButton{
+	width:100px; 
+	height:30px;
+	font-size:12pt;
+	background-color:rgb(255, 136, 0);
+	color:white;
+}
+.formEntry{
+	text-align:center;
+	width:100px;
+	height:20px;
+	font-size:14pt;
+	color:rgb(255, 0, 0);
+}
+.labelDisplay{
+	width:300px;
+	text-align:right;
+	float:left;
+}
+</style>
+
+<script>
+function calcBMI() {
+	let weight = parseFloat(document.getElementById("weight").value);
+	let height = parseFloat(document.getElementById("height").value);
+
+	if (isNaN(weight) || isNaN(height)) {
+		document.getElementById("msg").innerHTML =
+			"You need to enter valid numbers for weight and height.";
+	}
+	else if (weight < 60 || weight > 1000) {
+		document.getElementById("msg").innerHTML =
+			"Weight must be between 60 and 1000 pounds.";
+	}
+	else if (height < 35 || height > 90) {
+		document.getElementById("msg").innerHTML =
+			"Height must be between 35 and 90 inches.";
+	}
+	else {
+		let bmi = (weight * 703) / (height * height);
+		document.getElementById("msg").innerHTML =
+			"Your BMI is: " + bmi.toFixed(1);
+	}
+}
+
+function getFocus() {
+	document.getElementById("weight").focus();
+	document.getElementById("msg").innerHTML = "";
+}
+</script>
+</head>
+
+<body onload="getFocus();">
+<section>
+	<h1>Body Mass Index</h1>
+
+	<form action="">
+		<p style="text-align:left;">
+			<label class="labelDisplay" for="weight">Weight (lbs)</label>
+			<input class="formEntry" type="text" id="weight" /><br />
+
+			<label class="labelDisplay" for="height">Height (inches)</label>
+			<input class="formEntry" type="text" id="height" />
+		</p>
+
+		<p>
+			<input class="inputButton" type="button" value="Calculate" onclick="calcBMI()" />
+			<input class="inputButton" type="reset" value="Reset" onclick="getFocus()" />
+			<hr/>
+		</p>
+
+		<p id="msg" style="font-size:20pt;font-weight:900;text-align:center;"></p>
+	</form>
+</section>
+</body>
+</html>

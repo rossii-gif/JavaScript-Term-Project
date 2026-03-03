@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>XML AJAX Example - Food Menu</title>
+
+<style>
+body {
+    background-image: url('media/food-background.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+div {
+    background-color: darkgoldenrod;
+    border-radius: 30px;
+    opacity: .85;
+    padding: 10px 0px 20px 40px;
+    text-align: left;
+    width: 60%;
+    font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", 
+                 "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+    font-weight: 900;
+    font-size: 120%;
+}
+
+h2 {
+    font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", 
+                 "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+    text-shadow: 2px 2px darkgoldenrod;
+    color: white;
+}
+
+th {
+    border-top: dashed white 5px;
+    border-bottom: dashed white 5px;
+    color: white;
+    text-shadow: 1px 1px black;
+    padding: 20px 0px;
+    margin: 0px;
+}
+
+td {
+    border-bottom: solid 1px white;
+    box-shadow: 1px 1px black;
+}
+
+.alignRight {
+    text-align: right;
+}
+
+button {
+    border-radius: 20px;
+    padding: 10px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Restaurant Menu Collection:</h2>
+
+<div id="foodInfo"></div>
+
+<button id="load">Get Restaurant Menu</button>
+
+<script>
+var myMenu = document.getElementById("load");
+
+myMenu.addEventListener("click", function() {
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+
+            var xmlDoc = xhttp.responseXML;
+
+            var txt = "<table style='border:0'><tr><th>Name</th><th>Category</th><th>Price</th><th>Calories</th></tr>";
+
+            var n = xmlDoc.getElementsByTagName("name");
+            var c = xmlDoc.getElementsByTagName("category");
+            var p = xmlDoc.getElementsByTagName("price");
+            var cal = xmlDoc.getElementsByTagName("calories");
+
+            for (var i = 0; i < n.length; i++) {
+
+                txt = txt + "<tr><td>";
+                txt = txt + n[i].childNodes[0].nodeValue + "</td><td>";
+                txt = txt + c[i].childNodes[0].nodeValue + "</td><td class='alignRight'>";
+                txt = txt + "$" + p[i].childNodes[0].nodeValue + "</td><td class='alignRight'>";
+                txt = txt + cal[i].childNodes[0].nodeValue + "</td></tr>";
+            }
+
+            txt = txt + "</table>";
+
+            document.getElementById("foodInfo").innerHTML = txt;
+
+            document.getElementById("load").style.visibility = 'hidden';
+        }
+    };
+
+    xhttp.open("GET", "food_menu.xml", true);
+    xhttp.send();
+});
+</script>
+
+
+</body>
+</html>
