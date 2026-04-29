@@ -1,0 +1,7 @@
+{
+  "lunch": [
+    {"name":"Grilled Chicken Sandwich","price":9.95,"ingredients":"Chicken breast, lettuce, tomato, mayo, bun"},
+    {"name":"Veggie Burger","price":8.95,"ingredients":"Plant patty, lettuce, tomato, vegan aioli, bun"},
+    {"name":"Caesar Salad","price":7.50,"ingredients":"Romaine, croutons, parmesan, Caesar dressing"}
+  ]
+}

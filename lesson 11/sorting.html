@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cat Table</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pacifico&display=swap');
+
+    body {
+        font-family: 'DynaPuff', 'Lato', sans-serif;
+        background-color: #cffdff;
+        text-align: center;
+    }
+
+    h1 {
+        color: lightsalmon;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin: 20px auto;
+        width: 80%;
+        background-color: white;
+    }
+
+    th, td {
+        padding: 12px;
+        border: 1px solid #ccc;
+    }
+
+    th {
+        background-color: lightsalmon;
+        color: white;
+        cursor: pointer;
+    }
+
+    th:hover {
+        background-color: #388e3c;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function () {
+    $("th").click(function () {
+        let table = $(this).parents("table").eq(0);
+        let rows = table.find("tr:gt(0)").toArray().sort(comparer($(this).index()));
+        this.asc = !this.asc;
+
+        if (!this.asc) {
+            rows = rows.reverse();
+        }
+
+        for (let i = 0; i < rows.length; i++) {
+            table.append(rows[i]);
+        }
+    });
+
+    function comparer(index) {
+        return function (a, b) {
+            let valA = getCellValue(a, index);
+            let valB = getCellValue(b, index);
+
+            let numA = parseFloat(valA);
+            let numB = parseFloat(valB);
+
+            if (!isNaN(numA) && !isNaN(numB)) {
+                return numA - numB;
+            } else {
+                return valA.toString().localeCompare(valB);
+            }
+        };
+    }
+
+    function getCellValue(row, index) {
+        return $(row).children("td").eq(index).text();
+    }
+});
+</script>
+
+</head>
+
+<body>
+
+<h1>Cat Breed Facts Table</h1>
+
+<table>
+    <tr>
+        <th>Breed</th>
+        <th>Average Weight (lbs)</th>
+        <th>Lifespan (years)</th>
+        <th>Origin</th>
+        <th>Hypoallergenic?</th>
+    </tr>
+
+    <tr>
+        <td>Maine Coon</td>
+        <td>13</td>
+        <td>12</td>
+        <td>USA</td>
+        <td>No</td>
+    </tr>
+
+    <tr>
+        <td>Siamese</td>
+        <td>10</td>
+        <td>15</td>
+        <td>Thailand</td>
+        <td>Yes</td>
+    </tr>
+
+    <tr>
+        <td>Persian</td>
+        <td>11</td>
+        <td>14</td>
+        <td>Iran</td>
+        <td>No</td>
+    </tr>
+
+    <tr>
+        <td>Siberian</td>
+        <td>12</td>
+        <td>13</td>
+        <td>Russia</td>
+        <td>Yes</td>
+    </tr>
+
+    <tr>
+        <td>Sphynx</td>
+        <td>9</td>
+        <td>14</td>
+        <td>Canada</td>
+        <td>Yes</td>
+    </tr>
+
+    <tr>
+        <td>Ragdoll</td>
+        <td>15</td>
+        <td>13</td>
+        <td>USA</td>
+        <td>No</td>
+    </tr>
+</table>
+
+<p>Click the head of any column heading to sort!</p>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Random Cat Viewer</title>
+
+<style>
+body{
+    background: url('media/catPattern-bg.png');
+    color:white;
+    text-align:center;
+    font-family:Arial;
+}
+
+section{
+    margin:auto;
+    max-width:400px;
+    padding:20px;
+    background-color: antiquewhite;
+    border-radius:10px;
+}
+
+img{
+    width:300px;
+}
+
+button{
+    padding:10px 20px;
+    font-size:16px;
+    margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Cat Photo Generator</h1>
+
+<section id="display"></section>
+
+<button id="loadCat">Load New Cat</button>
+
+<script>
+
+async function loadCat(){
+
+const URL = "https://api.thecatapi.com/v1/images/search?limit=1";
+
+try{
+
+const response = await fetch(URL);
+const data = await response.json();
+
+const cat = data[0];
+
+document.getElementById("display").innerHTML = `
+<h2 style="color:black">Your Cat Pic!</h2>
+<img src="${cat.url}">
+`;
+
+}
+catch(error){
+console.log("Error loading cat:", error);
+}
+
+}
+
+document.getElementById("loadCat").addEventListener("click", loadCat);
+
+// load first cat automatically
+loadCat();
+
+</script>
+
+</body>
+</html>

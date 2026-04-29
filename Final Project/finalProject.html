@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final Project</title>
+<link href="css/final.css" rel="stylesheet" type="text/css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body class="center">
+
+  <header>
+Girly Games inspired by the 2000s
+</header>
+<div class="tab-buttons">
+  <button class="tab-link" data-tab="tab1">Dress Up Ballerina</button>
+  <button class="tab-link" data-tab="tab2">Bella's Cooking Game</button>
+  <button class="tab-link" data-tab="tab3">Fairy Mushroom Maze</button>
+</div>
+
+<div id="tab1" class="tab-content">
+  <p>Dress up the ballerina in various outfits</p>
+  <p><a href="dressUpBallerina.html"><img src="media/doll.png" alt="Dress Up The Ballerina!" width="200"></a></p>
+  <p>Click the ballerina to play!</p>
+</div>
+
+<div id="tab2" class="tab-content" style="display:none;">
+  <p>Add ingredients to a bowl and reveal the recipe</p>
+  <p><a href="cookinggame.html"><img src="media/bowl.png" alt="Bella's Cooking Game"></a></p>
+  <p>Click the bowl to play!</p>
+</div>
+
+<div id="tab3" class="tab-content" style="display:none;">
+  <p>Get the fairy out of the mushroom forest and back to her home</p>
+  <p><a href="fairygame.html"><img src="media/fairy.png" alt="Fairy Mushroom Maze" width="200" height="200"></a></p>
+  <p>Click the fairy to play!</p>
+</div>
+<footer>
+  <p>&copy; 2026 Isabella Rossi <br>
+    <a href="ReadMe.txt" id="readMe">View Readme</a>
+  </p>
+</footer>
+
+<script>
+const tabLinks = document.querySelectorAll(".tab-link");
+const tabContents = document.querySelectorAll(".tab-content");
+
+tabLinks.forEach(button => {
+  button.addEventListener("click", () => {
+    const target = button.getAttribute("data-tab");
+
+    // Hide all tab contents
+    tabContents.forEach(tab => tab.style.display = "none");
+
+    // Show the selected tab
+    document.getElementById(target).style.display = "block";
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+body {
+    background-color: aliceblue;
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+h2 {
+    font-size: 2em;
+    text-shadow: 1px 1px black;
+    color: black;
+    text-align: center;
+}
+
+#tabs-menu {
+    font-size: 14px;
+}
+
+.ui-widget-header {
+    background: black;
+    border: 1px solid #ccc;
+    color: white;
+}
+
+#tabs-menu img {
+    width: 50%;
+    display: block;
+    margin: auto;
+}
+
+.show1 {
+    background-color: red !important;
+    color: white !important;
+}
+
+.show2 {
+    background-color: yellow !important;
+    color: black !important;
+}
+
+.show3 {
+    background-color: lightgray !important;
+}
+
+.show4 {
+    background-color: lightpink !important;
+}
+
+.show1:hover {
+    background-color: blue !important;
+}
+
+.show2:hover {
+    background-color: darkorchid !important;
+    color: white !important;
+}
+
+.show3:hover {
+    background-color: gray !important;
+    color: white !important;
+}
+
+.show4:hover {
+    background-color: palevioletred !important;
+    color: white !important;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurant Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fefefe;
+      margin: 20px;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .menu-section {
+      margin-bottom: 40px;
+    }
+    .dish {
+      background-color: #fff8dc;
+      border: 1px solid #e0d7c6;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 2px 2px 5px #ccc;
+    }
+    .dish h3 {
+      margin: 0 0 5px 0;
+      color: #d2691e;
+    }
+    .dish p {
+      margin: 3px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Restaurant Menu</h1>
+  <div id="menuContainer"></div>
+
+  <script>
+    fetch('food.json')
+      .then(response => response.json())
+      .then(data => {
+        const menuContainer = document.getElementById('menuContainer');
+        const categories = {};
+
+        data.restaurantMenu.forEach(dish => {
+          if (!categories[dish.category]) {
+            categories[dish.category] = [];
+          }
+          categories[dish.category].push(dish);
+        });
+
+        for (let category in categories) {
+          const section = document.createElement('div');
+          section.className = 'menu-section';
+          const heading = document.createElement('h2');
+          heading.textContent = category;
+          section.appendChild(heading);
+
+          categories[category].forEach(dish => {
+            const dishDiv = document.createElement('div');
+            dishDiv.className = 'dish';
+            dishDiv.innerHTML = `
+              <h3>${dish.name} - $${dish.price.toFixed(2)}</h3>
+              <p><strong>Origin:</strong> ${dish.origin}</p>
+              <p><strong>Ingredients:</strong> ${dish.ingredients}</p>
+              <p><strong>Calories:</strong> ${dish.calories}</p>
+            `;
+            section.appendChild(dishDiv);
+          });
+
+          menuContainer.appendChild(section);
+        }
+      })
+      .catch(err => console.error('Error loading JSON:', err));
+  </script>
+</body>
+</html>

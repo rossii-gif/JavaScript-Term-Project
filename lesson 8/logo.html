@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Canvas 2D Example</title>
+</head>
+
+<body>
+
+<canvas id="myCanvas" width="240" height="240">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+ctx.fillStyle = "aliceblue";
+ctx.fillRect(0,0,240,240);
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+ctx.fillStyle = "blue";
+
+// big circle
+ctx.beginPath();
+ctx.arc(120, 150, 35, 0, Math.PI * 2);
+ctx.fill();
+
+// toe pad 1
+ctx.beginPath();
+ctx.arc(85, 105, 15, 0, Math.PI * 2);
+ctx.fill();
+
+// toe pad 2
+ctx.beginPath();
+ctx.arc(110, 90, 15, 0, Math.PI * 2);
+ctx.fill();
+
+// toe pad 3
+ctx.beginPath();
+ctx.arc(135, 90, 15, 0, Math.PI * 2);
+ctx.fill();
+
+// toe pad 4
+ctx.beginPath();
+ctx.arc(160, 105, 15, 0, Math.PI * 2);
+ctx.fill();
+
+ctx.font = "30px Arial";
+ctx.fillStyle = "orange";
+ctx.fillText("Coffee for Cats", 10, 220);
+
+</script>
+
+</body>
+</html>

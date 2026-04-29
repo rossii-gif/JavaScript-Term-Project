@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/sunny/jquery-ui.css" rel="stylesheet">
+    <link href="css/panel.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#tabs-menu").tabs({
+                heightStyle: "content",
+                collapsible: true,
+                hide: "slideUp",
+                show: "slideDown"
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+<h2>My Favorite TV Shows</h2>
+
+<nav id="tabs-menu" class="center">
+    <ul>
+        <li><a href="#tabs-1" class="show1">Show N.1</a></li>
+        <li><a href="#tabs-2" class="show2">Show N.2</a></li>
+        <li><a href="#tabs-3" class="show3">Show N.3</a></li>
+        <li><a href="#tabs-4" class="show4">Show N.4</a></li>
+    </ul>
+
+    <div id="tabs-1">
+        <p><img src="media/bobsburgers.jpg" alt="bob's burgers"></p>
+    </div>
+
+    <div id="tabs-2">
+        <p><img src="media/fleabag.jpg" alt="fleabag"></p>
+    </div>
+
+    <div id="tabs-3">
+        <p><img src="media/got.jpg" alt="game of thrones"></p>
+    </div>
+
+    <div id="tabs-4">
+        <p><img src="media/satc.jpg" alt="sex and the city"></p>
+    </div>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "dinner": [
+    {"name":"Steak & Potatoes","price":19.99,"ingredients":"Grilled ribeye steak with garlic mashed potatoes"},
+    {"name":"Salmon Fillet","price":17.99,"ingredients":"Pan-seared salmon with steamed vegetables"},
+    {"name":"Vegetarian Pasta","price":14.99,"ingredients":"Pasta with seasonal vegetables in a creamy sauce"}
+  ]
+}

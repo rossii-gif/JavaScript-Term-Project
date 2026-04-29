@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #65a396;
+    font-family: 'DynaPuff', cursive;
+}
+
+
+#gameContainer {
+    border: 9px #0F4B33;
+    border-style: groove;
+    margin-top: 10px;
+    width: 900px;   
+    height: 500px;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+canvas {
+    display: block;
+    background-image: url('media/enchanted-forest.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#gameText {
+    margin-top: 15px;
+    font-size: 22px;
+    color: #0A5454;
+    text-align: center;
+    max-width: 600px;
+}
+
+#startButton {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #457475;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'DynaPuff', cursive;
+}
+
+#startButton:hover {
+    background-color: #146c4d;
+    font-family: 'DynaPuff', cursive;
+}
+h1{
+    font-family: 'Pacifico', cursive;
+    font-size: 49px;
+    color: #0e3722;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+</style>
+</head>
+
+<body>
+
+<h1>Help the Fairy Escape the Mushroom Forest!</h1>
+
+<div id="gameContainer"></div>
+
+<p id="gameText">
+Use the arrow keys to move the fairy. <br> Avoid the tree stumps and survive as long as you can!
+</p>
+
+<button onclick="startGame()" id="startButton">Start / Reset Game</button>
+
+<script>
+
+var myGamePiece;
+var myObstacles = [];
+var myScore;
+var scoreCount = 0;
+
+function startGame() {
+    myObstacles = [];
+    scoreCount = 0;
+
+    myGamePiece = new component(80, 90, "media/fairy.png", 50, 200, "image");
+    myScore = new component("30px", "DynaPuff", "#B3C93F",  380, 50, "text");
+    myGameArea.start();
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+
+    start : function() {
+        if (this.interval) {
+            clearInterval(this.interval);
+        }
+
+        this.canvas.width = 900;
+        this.canvas.height = 500;
+        this.context = this.canvas.getContext("2d");
+
+        if (!this.canvas.parentNode) {
+            document.getElementById("gameContainer").appendChild(this.canvas);
+        }
+
+        this.frameNo = 0;
+        this.interval = setInterval(updateGameArea, 20);
+
+        window.addEventListener('keydown', function(e){
+            myGameArea.keys = (myGameArea.keys || []);
+            myGameArea.keys[e.keyCode] = true;
+        });
+
+        window.addEventListener('keyup', function(e){
+            myGameArea.keys[e.keyCode] = false;
+        });
+    },
+
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+
+    stop : function() {
+        clearInterval(this.interval);
+    }
+}
+
+function component(width, height, color, x, y, type) {
+    this.type = type;
+
+    if (type == "image") {
+        this.image = new Image();
+        this.image.src = color;
+    }
+
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.x = x;
+    this.y = y;    
+    this.flip = false;
+
+    this.update = function() {
+        ctx = myGameArea.context;
+
+        if (this.type == "text") {
+            ctx.font = this.width + " " + this.height;
+            ctx.fillStyle = color;
+            ctx.fillText(this.text, this.x, this.y);
+        }
+        else if (this.type == "image") {
+            if (this.flip) {
+                ctx.save();
+                ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+                ctx.scale(1, -1);
+                ctx.drawImage(this.image, -this.width / 2, -this.height / 2, this.width, this.height);
+                ctx.restore();
+            } else {
+                ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+            }
+        }  
+    }
+
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+    }
+
+    this.crashWith = function(otherobj) {
+    var paddingX = 20;
+    var paddingY = 25;
+
+    var myleft = this.x + paddingX;
+    var myright = this.x + this.width - paddingX;
+    var mytop = this.y + paddingY;
+    var mybottom = this.y + this.height - paddingY;
+
+    var otherleft = otherobj.x + paddingX;
+    var otherright = otherobj.x + otherobj.width - paddingX;
+    var othertop = otherobj.y + paddingY;
+    var otherbottom = otherobj.y + otherobj.height - paddingY;
+
+    return !(mybottom < othertop || mytop > otherbottom || myright < otherleft || myleft > otherright);
+}
+}
+
+function updateGameArea() {
+    var x;
+
+    for (var i = 0; i < myObstacles.length; i++) {
+        if (myGamePiece.crashWith(myObstacles[i])) {
+            myGameArea.stop();
+            return;
+        } 
+    }
+
+    myGameArea.clear();
+    myGameArea.frameNo += 1;
+
+    if (myGameArea.frameNo == 1 || everyinterval(200)) {
+        x = myGameArea.canvas.width;
+
+        var width = Math.floor(Math.random() * 45) + 50;      
+        var topHeight = Math.floor(Math.random() * 180) + 80;  
+        var gap = Math.floor(Math.random() * 75) + 85;       
+        var bottomHeight = myGameArea.canvas.height - topHeight - gap;
+
+        var topObstacle = new component(width, topHeight + 50, "media/tall-treestump.png", x, -50, "image");
+        topObstacle.flip = true;
+
+        var bottomObstacle = new component(width, bottomHeight + 50, "media/short-treestump.png", x, topHeight + gap, "image");
+
+        topObstacle.passed = false;
+        bottomObstacle.passed = false;
+
+        myObstacles.push(topObstacle);
+        myObstacles.push(bottomObstacle);
+    }
+
+    for (var i = 0; i < myObstacles.length; i++) {
+        myObstacles[i].speedX = -2;
+        myObstacles[i].newPos();
+        myObstacles[i].update();
+
+        if (!myObstacles[i].passed && myObstacles[i].x + myObstacles[i].width < myGamePiece.x) {
+            myObstacles[i].passed = true;
+            if (i % 2 === 1) {
+                scoreCount++;
+            }
+        }
+    }
+
+    while (myObstacles.length > 0 && myObstacles[0].x + myObstacles[0].width < 0) {
+        myObstacles.shift();
+        myObstacles.shift();
+    }
+
+    myScore.text = "SCORE: " + scoreCount;
+    myScore.update();
+
+    myGamePiece.speedX = 0;
+    myGamePiece.speedY = 0;
+
+    if (myGameArea.keys && myGameArea.keys[37]) { myGamePiece.speedX = -4; }
+    if (myGameArea.keys && myGameArea.keys[39]) { myGamePiece.speedX = 4; }
+    if (myGameArea.keys && myGameArea.keys[38]) { myGamePiece.speedY = -4; }
+    if (myGameArea.keys && myGameArea.keys[40]) { myGamePiece.speedY = 4; }
+
+    myGamePiece.newPos();    
+    myGamePiece.update();
+}
+
+function everyinterval(n) {
+    return (myGameArea.frameNo / n) % 1 == 0;
+}
+
+</script>
+
+</body>
+</html>

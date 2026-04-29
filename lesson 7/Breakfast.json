@@ -1,0 +1,7 @@
+{
+  "breakfast": [
+    {"Entree":"Belgian Waffles","Price":"$5.95","Description":"Two Belgian waffles with maple syrup","Calories":"650"},
+    {"Entree":"French Toast","Price":"$5.95","Description":"Thick slices of sourdough with syrup","Calories":"600"},
+    {"Entree":"Homestyle Breakfast","Price":"$6.95","Description":"Two eggs, bacon or sausage, toast","Calories":"950"}
+  ]
+}

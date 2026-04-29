@@ -1,0 +1,107 @@
+/* Body background and font */
+body {
+    background: url("../media/white\ floral.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14pt;
+    margin: 0;
+    padding: 0;
+    font-family: 'Pacifico', cursive;
+}
+
+/* Container for tabs */
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    gap: 10px;
+}
+
+/* Tab buttons */
+.tab-link {
+    background-color: #edb2c3; /* same as panel */
+    color: #fefcfc;
+    padding: 15px 25px;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px 15px 0 0; /* Rounded top corners */
+    font-family: 'DynaPuff', cursive;
+    font-size: 18pt;
+    transition: 0.3s;
+    position: relative;
+    z-index: 2; /* Keep tabs above panel */
+    border-top: #f66565 5px solid;
+    border-left: #f66565 5px solid;
+    border-right: #f66565 5px solid;
+}
+
+.tab-link:hover {
+    background-color: #edb2c3;
+    color: #fff;
+}
+
+/* Active tab style */
+.tab-link.active {
+    background-color: #edb2c3; /* same as normal tab */
+    color: #4A321D;
+    z-index: 3;
+}
+
+/* Tab content panels */
+.tab-content {
+    display: none; 
+    background-color: #edb2c3; 
+    margin: 0 auto 20px auto;
+    padding: 20px;
+    border-radius:15px; 
+    width: 60%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: #f66565 5px solid;
+    font-family: 'DynaPuff', cursive;
+    font-size: 2em;
+    color: #aa264c;
+}
+
+/* Make first tab visible by default */
+.tab-content:first-of-type {
+    display: block;
+}
+
+header {
+    color: #8e0538;
+    text-align: center;
+    margin-bottom: 5%;
+    font-size: 45pt;
+    font-family: 'Pacifico', cursive;
+    background-color: #f79c9e;
+    border-bottom: 5px solid #8e0538;
+    padding: 25px;
+}
+.tab-content img {
+    transition: all 0.3s ease;
+}
+
+/* Glow that follows the PNG shape */
+.tab-content img:hover {
+    filter: drop-shadow(0 0 10px #ff69b4)
+            drop-shadow(0 0 20px #ffb6c1)
+            drop-shadow(0 0 30px #fff);
+    transform: scale(1.05);
+}
+footer {
+    background-color: #f79c9e;
+    color: #8e0538;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+#readMe {
+    color: #8e0538;
+    text-decoration: none;
+}
+#readMe:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Cooking Game</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Sour Gummy', cursive;
+    background-color: #f0f0f0;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(lightpink, lightcoral);
+    border-bottom: 7px dotted rgb(255, 106, 156);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 40px;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: lightcoral;
+    color: whitesmoke;
+    padding: 10px;
+    font-size: 2em;
+    border: 7px dotted lightpink;
+    border-radius: 2px;
+}
+
+.recipe button {
+    width: 100%;
+    background: lightpink;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+    margin-top: 5px;
+    font-family: 'Sour Gummy', cursive;
+    font-size: 20px;
+}
+
+.recipe-content {
+    display: none;
+    
+    padding: 8px;
+    font-size: 15px;
+}
+
+/* Game Area */
+.game-area {
+    width: 600px;
+    background: lightcoral;
+    padding: 20px;
+    margin-left: 20px;
+    text-align: center;
+    border: 7px dotted lightpink;
+}
+
+/* Ingredients */
+.ingredients {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.ingredient {
+    width: 80px;
+    cursor: grab;
+}
+
+.ingredient img {
+    width: 70px;
+    height: 70px;
+}
+
+/* Bowl */
+.bowl-container {
+    position: relative;
+    width: 320px;
+    height: 240px;
+    margin: auto;
+}
+
+
+.bowl-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none; 
+}
+
+/* Drop area on top of bowl */
+.bowl-drop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Button */
+#enterBtn, #resetBtn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+    display: inline-block; /* always visible */
+    font-family: 'Sour Gummy', cursive;
+    background-color: lightpink;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Result */
+.result {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+footer {
+    background: lightcoral;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+        bottom: 0;
+    width: 100%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    Bella's Cooking Class
+</div>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3>Recipes</h3>
+
+        <div class="recipe">
+            <button onclick="toggleRecipe(this)">Recipe 1</button>
+            <div class="recipe-content">
+                - Eggs <br>
+                - Milk <br>
+                - Flour <br>
+                - Butter <br>
+                - Salt <br>
+                - Vanilla <br>
+                - Baking Soda
+            </div>
+        </div>
+
+        <div class="recipe">
+            <button onclick="toggleRecipe(this)">Recipe 2</button>
+            <div class="recipe-content">
+                - Eggs <br>
+                - Milk <br>
+                - Flour <br>
+                - Salt <br>
+                - Cocoa Powder
+            </div>
+        </div>
+
+        <div class="recipe">
+            <button onclick="toggleRecipe(this)">Recipe 3</button>
+            <div class="recipe-content">
+                - Eggs <br>
+                - Milk <br>
+                - Flour <br>
+                - Butter <br>
+                - Salt <br>
+                - Cocoa Powder <br>
+                - Baking Soda
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Area -->
+    <div class="game-area">
+
+        <!-- Ingredients -->
+        <div class="ingredients">
+            <div class="ingredient" draggable="true" data-name="Eggs">
+                <img src="media/eggs.png">
+            </div>
+
+            <div class="ingredient" draggable="true" data-name="Milk">
+                <img src="media/milk.webp">
+            </div>
+
+            <div class="ingredient" draggable="true" data-name="Flour">
+                <img src="media/flour.png">
+            </div>
+
+            <div class="ingredient" draggable="true" data-name="Butter">
+                <img src="media/butter.png">
+            </div>
+
+            <div class="ingredient" draggable="true" data-name="Salt">
+                <img src="media/salt.png">
+            </div>
+
+            <div class="ingredient" draggable="true" data-name="Vanilla">
+                <img src="media/vanilla.png">
+            </div>
+
+            <div class="ingredient" draggable="true" data-name="Cocoa Powder">
+                <img src="media/cocoapowder.webp">
+            </div>
+
+            <div class="ingredient" draggable="true" data-name="Baking Soda">
+                <img src="media/bakingsoda.png">
+            </div>
+        </div>
+
+        <!-- Bowl -->
+        <div class="bowl-container">
+            <img src="media/bowl.png" class="bowl-img">
+            <div class="bowl-drop" id="bowl"></div>
+        </div>
+
+        <button id="enterBtn">Enter</button>
+        <button id="resetBtn">Reset</button>
+
+        <div class="result" id="result"></div>
+
+    </div>
+</div>
+<footer>
+    <p> These recipes are for fun and not meant to be taken seriously. Always ask an adult before cooking!
+        &copy; 2026 Bella's Cooking Class</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+
+    const $ingredients = $('.ingredient');
+    const $bowl = $('#bowl');
+    const $result = $('#result');
+    const $enterBtn = $('#enterBtn');
+    const $resetBtn = $('#resetBtn');
+
+    let droppedItems = [];
+    let currentDish = "";
+
+    // Drag start
+    $ingredients.on('dragstart', function (e) {
+        e.originalEvent.dataTransfer.setData('name', $(this).data('name'));
+        e.originalEvent.dataTransfer.setData('id', $ingredients.index(this));
+    });
+
+    // Allow drop
+    $bowl.on('dragover', function (e) {
+        e.preventDefault();
+    });
+
+    // Drop
+    $bowl.on('drop', function (e) {
+        e.preventDefault();
+
+        const name = e.originalEvent.dataTransfer.getData('name');
+        const id = e.originalEvent.dataTransfer.getData('id');
+        const $element = $ingredients.eq(id);
+
+        if (!droppedItems.includes(name)) {
+            droppedItems.push(name);
+            $element.css('visibility', 'hidden');
+        }
+
+        checkRecipe();
+    });
+
+    function checkRecipe() {
+        const combo = droppedItems.slice().sort().join(',');
+
+        const vanilla = ['Baking Soda','Butter','Eggs','Flour','Milk','Salt','Vanilla'].sort().join(',');
+        const brownies = ['Cocoa Powder','Eggs','Flour','Milk','Salt'].sort().join(',');
+        const redVelvet = ['Baking Soda','Butter','Cocoa Powder','Eggs','Flour','Milk','Salt'].sort().join(',');
+
+        if (combo === vanilla) {
+            currentDish = "Vanilla Cupcakes";
+        } else if (combo === brownies) {
+            currentDish = "Brownies";
+        } else if (combo === redVelvet) {
+            currentDish = "Red Velvet Cake";
+        } else {
+            currentDish = "";
+        }
+    }
+
+    // Enter button
+    $enterBtn.on('click', function () {
+        if (currentDish) {
+            $result.text("Congrats on making " + currentDish + "!");
+        } else {
+            $result.text("That combination doesn't make a recipe :(");
+        }
+    });
+
+    // Reset
+    $resetBtn.on('click', function () {
+        droppedItems = [];
+        currentDish = "";
+        $result.text("");
+
+        $ingredients.css('visibility', 'visible');
+    });
+
+    // Toggle recipe dropdown
+    $('.recipe button').on('click', function () {
+        $(this).next().slideToggle();
+    });
+
+});
+</script>
+
+</body>
+</html>
